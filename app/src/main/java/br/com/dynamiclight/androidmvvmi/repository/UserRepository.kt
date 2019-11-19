@@ -1,5 +1,10 @@
 package br.com.dynamiclight.androidmvvmi.repository
 
-class UserRepository {
+import android.content.Context
+
+
+class UserRepository(context: Context) {
+
+
 
 }

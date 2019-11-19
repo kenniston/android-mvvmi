@@ -8,14 +8,5 @@
         android:id="@+id/mainFragment"
         android:name="br.com.dynamiclight.androidmvvmi.view.fragment.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_loginActivity"
-            app:destination="@id/loginActivity" />
-    </fragment>
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="br.com.dynamiclight.androidmvvmi.view.activity.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
+        tools:layout="@layout/fragment_main" />
 </navigation>
