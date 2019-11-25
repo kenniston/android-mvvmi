@@ -18,14 +18,21 @@ class MainViewModel(val app: Application) : AndroidViewModel(app) {
 
     fun getLastMovies() {
 
-        disposable = interactor.lastMovies(MovieQueryOrderBy.PopularityAsc()).subscribe { res, error ->
-            if (error != null) {
-                lastMovies.value = AppResult.Error(error)
-                return@subscribe
-            }
+        disposable =
+            interactor.lastMovies(MovieQueryOrderBy.PopularityAsc())
+                .subscribe { res, error ->
 
-            lastMovies.value = AppResult.Success(res)
-        }
+                    res.forEach { movie ->
+                        movie.title = "Filme: ${movie.title}"
+                    }
+
+                if (error != null) {
+                    lastMovies.value = AppResult.Error(error)
+                    return@subscribe
+                }
+
+                lastMovies.value = AppResult.Success(res)
+            }
 
     }
 

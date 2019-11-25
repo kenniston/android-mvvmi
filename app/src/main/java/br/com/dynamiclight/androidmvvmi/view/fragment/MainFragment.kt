@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.dynamiclight.androidmvvmi.AppResult
 import br.com.dynamiclight.androidmvvmi.R
 import br.com.dynamiclight.androidmvvmi.databinding.FragmentMainBinding
 import br.com.dynamiclight.androidmvvmi.domain.Movie
+import br.com.dynamiclight.androidmvvmi.view.adapter.MovieAdapter
 import br.com.dynamiclight.androidmvvmi.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
@@ -43,14 +45,18 @@ class MainFragment : Fragment() {
     }
 
     private fun updateLastMovies(result: AppResult<Array<Movie>>) {
+        val recycleListView = binding.rvMovies
+        recycleListView.layoutManager = LinearLayoutManager(context)
+
         when (result) {
             is AppResult.Success -> {
                 // TODO: UPDATE LAST MOVIES LIST
 
-                result.data.forEach { movie ->
-                    Log.d("MOVIES", movie.toString())
-                }
+                //result.data.forEach { movie ->
+                //    Log.d("MOVIES", movie.toString())
+                //}
 
+                recycleListView.adapter = MovieAdapter(result.data, viewModel)
             }
             is AppResult.Error -> {
                 if (result.error != null) {
